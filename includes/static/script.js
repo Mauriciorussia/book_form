@@ -1,7 +1,7 @@
 jQuery( document ).ready(function() {
     "use strict"
     jQuery('#add_author').click(()=>{
-        jQuery('#show_authors').show();
+        jQuery('#show_authors').css('display','block');
     })
     jQuery('#submit').click( function(e) {
         e.preventDefault();
