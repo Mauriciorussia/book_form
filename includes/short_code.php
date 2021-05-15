@@ -50,8 +50,8 @@ class Short_Code {
 						<label>
 							<button type="button" id="add_author"> <?php esc_html_e('Add Author', 'maurl-book-form'); ?> </button>
 						</label>
-						<div id="show_authors">
-								<input list="authors" name="author" id="author">
+						<div class="show_authors">
+								<input list="authors" name="author" class="author_data">
 
 								<datalist id="authors">
 									<?php

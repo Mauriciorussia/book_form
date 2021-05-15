@@ -1,7 +1,9 @@
 jQuery( document ).ready(function() {
     "use strict"
-    jQuery('#add_author').click(()=>{
-        jQuery('#show_authors').css('display','block');
+    jQuery(document).on('click','#add_author',function(){
+        var button = jQuery(this)
+        button.parent().next().css('display','block');
+        button.parent().next().clone().insertAfter(button.parent()).css('display','none');
     })
     jQuery('#submit').click( function(e) {
         e.preventDefault();
@@ -11,7 +13,12 @@ jQuery( document ).ready(function() {
         data['nonce'] = localizedObject.nonce;
 
         data['editor'] = jQuery('#editor').val();
-        data['author'] = jQuery('#author').val();
+        data['author'] = [];
+        jQuery('.author_data').each(function(index){
+            if(index !== 0) {
+                data['author'].push(jQuery(this).val())
+            }
+        })
         data['full_name'] = jQuery('#full_name').val();
         data['edition_type'] = jQuery('#edition_type').val();
         data['volume_lines'] = jQuery('#volume_lines').val();
@@ -33,7 +40,6 @@ jQuery( document ).ready(function() {
             IPM_availability = 1;
         }
         data['IPM_availability'] = IPM_availability;
-
 
         jQuery.ajax(
             {

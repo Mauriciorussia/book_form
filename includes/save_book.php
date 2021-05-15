@@ -11,7 +11,7 @@ class Save_Book_Form {
 				 die ( 'Busted!');
 			}
 			$editor 	  = '';
-			$author       = ''; 
+			$author       = array(); 
 			$full_name 	  = '';
 			$edition_type = '';
 			$volume_lines = '';

@@ -21,7 +21,7 @@ label {
 	font-weight: bold !important;
     display: block;
 }
-#show_authors{
+.show_authors{
     display: none;
 }
 
@@ -35,7 +35,7 @@ select {
         row-gap: 10px;
     }
 }
-#edition_type , #book_format,#MPF,#author{
+#edition_type , #book_format,#MPF,.author_data{
 	font-family: Montserrat-Bold;
 	font-size: 15px;
 	line-height: 2.0;
