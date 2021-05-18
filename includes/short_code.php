@@ -156,7 +156,7 @@ class Short_Code {
 					</div>
 
 					<div class="submit">
-						<input type="submit" name="submit" id="submit">
+						<input type="submit" name="submit" id="submit_book_data">
 					</div>
 
 				</form>

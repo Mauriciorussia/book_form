@@ -5,10 +5,10 @@ jQuery( document ).ready(function() {
         button.parent().next().css('display','block');
         button.parent().next().clone().insertAfter(button.parent()).css('display','none');
     })
-    jQuery('#submit').click( function(e) {
+    jQuery('#submit_book_data').click( function(e) {
         e.preventDefault();
         var data={
-            action :'add_book',
+            action :'add_book'
         };
         data['nonce'] = localizedObject.nonce;
 
@@ -40,14 +40,12 @@ jQuery( document ).ready(function() {
             IPM_availability = 1;
         }
         data['IPM_availability'] = IPM_availability;
-
         jQuery.ajax(
             {
                 url:localizedObject.ajaxurl,
                 type:'POST',
                 data: data,
                 success: function(result){
-                
                     alert(result.data);
                 },
                 error:  function(err){

@@ -4,9 +4,8 @@ class Save_Book_Form {
 		add_filter('wp_ajax_add_book', 'save_book_data');
 		
 		function save_book_data() {
-			
 			global $wpdb;
-			 // Check for nonce security      
+			 // Check for nonce security 
 			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( $_POST['nonce'] ), 'ajax-nonce' ) ) {
 				 die ( 'Busted!');
 			}
@@ -28,13 +27,14 @@ class Save_Book_Form {
 			$funding_source = '';
 			$IPM_availability = 0;
 
+
 			if ( isset($_POST['editor']) ) {
 				$editor = sanitize_text_field( $_POST['editor'] );
 				
 			}
 
 			if ( isset($_POST['author']) ) {
-				$author = sanitize_text_field( $_POST['author'] );
+				$author = array_map( 'sanitize_text_field', wp_unslash( $_POST['author'] ) );
 			}
 
 			if ( isset($_POST['full_name']) ) {
@@ -85,10 +85,9 @@ class Save_Book_Form {
 			}
 			$insert = $wpdb->query($wpdb->prepare('INSERT INTO `wp_books` (`editors`,`author`,`edition_type`,`full_name`,`volume`,`book_format`,`circulation`,`neck`,`city`,`ISBN`,`manuscript`,`funding_source`,`budget`,`IPM_availability`,`book_link`,`book_notes`) 
 				values (%s, %s, %s,%s,%d,%s,%d,%s,%s,%s,%s,%s,%s,%d,%s,%s)', 
-				$editor, $author, $edition_type , $full_name, $volume_lines, $book_format, $circulations,$neck,$city,$ISBN,$MPF,$funding_source,$budget,$IPM_availability,$book_link,$book_notes));
+				$editor, serialize($author), $edition_type , $full_name, $volume_lines, $book_format, $circulations,$neck,$city,$ISBN,$MPF,$funding_source,$budget,$IPM_availability,$book_link,$book_notes));
 
 			if ($insert) { 
-
 				wp_send_json_success( 'Your Book data has been saved successfully', 'maurl-book-form' );
 
 			} else{
